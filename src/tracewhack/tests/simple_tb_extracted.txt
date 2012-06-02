@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+ File "/cryptstorage/deploy/environments/env-6f95c16ca876dd5f819ea0e833927fabf8d7d706/lib/python2.7/site-packages/lamson/routing.py", line 376, in call_safely
+   func(message, **kwargs)
+ File "/cryptstorage/deploy/environments/env-6f95c16ca876dd5f819ea0e833927fabf8d7d706/lib/python2.7/site-packages/lamson/routing.py", line 495, in routing_wrapper
+   next_state = func(message, *args, **kw)
+ File "/cryptstorage/deploy/wsgi/earhart/src/wingumail/app/handlers/reminder_task.py", line 17, in CAPTURE_TASK_REMINDER
+   messages.add_reminder(tenant, 'task', int(alert_offset), message)
+ File "/cryptstorage/deploy/wsgi/earhart/src/wingumail/app/model/messages.py", line 63, in add_reminder
+   data=data, files=files)
+ File "/cryptstorage/deploy/environments/env-6f95c16ca876dd5f819ea0e833927fabf8d7d706/lib/python2.7/site-packages/winguapi/client.py", line 146, in request
+   raise APIException(path, response.text, response.status_code)
