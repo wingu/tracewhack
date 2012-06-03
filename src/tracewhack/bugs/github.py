@@ -82,8 +82,9 @@ def _record_issues(issues, cache_shelf, gh_now, db_config, options):
     options = options
 
     for issue in issues:
-        issue_key = 'bug:github_%s' % issue['id']
-        cache_shelf[issue_key] = issue
+        issue_key = 'bug:github_%s_%s' % (db_config['repo'],
+                                          issue['id'])
+        cache_shelf[str(issue_key)] = issue
 
     cached_repos_with_ts = _get_repos_with_ts(cache_shelf)
     cached_repos_with_ts[db_config['repo']] = gh_now

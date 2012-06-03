@@ -17,7 +17,8 @@ def _extract_options(optparse_options):
     Get the options from optparse into our globally recognized format.
     """
     return {'verbose': optparse_options.verbose,
-            'refresh': optparse_options.refresh}
+            'refresh': optparse_options.refresh,
+            'num_results': optparse_options.num_results}
 
 
 def main():
@@ -40,11 +41,14 @@ def main():
                       help=dedent("""
                                   How to refresh the bug cache.  Valid
                                   options are: 'partial' (default):
-                                  pull changes since last run; 'full'
-                                  (expensive): do a full refresh from
-                                  the bug repos; 'none': just use
-                                  cache.
+                                  pull changes since last refresh;
+                                  'full' (expensive): do a full
+                                  refresh from the bug repos; 'none':
+                                  just use cache.
                                   """).strip())
+    parser.add_option("-n", "--num-results", dest="num_results",
+                      default=5, type="int",
+                      help="Show the top n results (defaults to 5)")
     parser.add_option("-v", "--verbose", dest="verbose",
                       default=False, action="store_true",
                       help="Print a lot of extra information.")

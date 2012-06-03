@@ -1,4 +1,2 @@
-* Check \r\n in regexps (gh returns things like that)
-* Add option to force refresh
-* Add option to use only local
 * freeze deps
+* catch the error information at the end of the tb

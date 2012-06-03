@@ -27,12 +27,15 @@ class BugDb(object):
         self.options = options
         self.cache_shelf = None
 
-    def dump(self):
+    def bugs(self):
         """
-        For now, just dump all the keys.
+        Generator to walk all the bugs in the bug db.
         """
-        for k in self.cache_shelf.keys():
-            print k
+        for (key, val) in self.cache_shelf.iteritems():
+            if _is_bug_key(key):
+                val = val.copy()
+                val['global_id'] = key
+                yield val
 
     def open(self):
         """
@@ -115,3 +118,10 @@ def _open_cache_shelf(cache_fname):
     Open the specified cache file, creating it if needed.
     """
     return shelve.open(cache_fname, protocol=2, writeback=False)
+
+
+def _is_bug_key(key):
+    """
+    Is this a key for a bug?
+    """
+    return key and key.startswith('bug:')
