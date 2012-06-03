@@ -1,0 +1,12 @@
+{
+  "profile": "your_profile_name",
+  "bugdbs":
+            [
+              {
+                "type": "github",
+                "repo": "user_or_org/repo_name",
+                "api_user": "your_user_name",
+                "api_password": "your_password"
+               }
+            ]
+}
