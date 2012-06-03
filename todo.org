@@ -1,2 +1,1 @@
 * freeze deps
-* catch the error information at the end of the tb

@@ -5,8 +5,12 @@ Extract tracebacks.
 import re
 
 TRACEBACK_RE = re.compile(
-    ".*(Traceback \(most recent call last\):[ ]*\n([ ]+[^\n]*\n)*[^ ]+[^\n]*[\n]?([^\n]+[\n]?)*)",
-    re.DOTALL | re.MULTILINE)
+    """.*(Traceback[ ]\(most[ ]recent[ ]call[ ]last\):[ ]*[\n] # traceback line
+       ([ ]+[^\n]*[\n])+ # at least one File/code line, start with spaces
+       ([^ ]+[^\n]*[\n])? # first error line, if there is one
+       ([^\n]+[\n]?)*) # any remaining error lines, to a blank line or eos
+    """,
+    re.DOTALL | re.MULTILINE | re.VERBOSE)
 
 
 def extract_tracebacks(txt):
