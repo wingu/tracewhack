@@ -9,3 +9,7 @@ Traceback (most recent call last):
    data=data, files=files)
  File "/cryptstorage/deploy/environments/env-6f95c16ca876dd5f819ea0e833927fabf8d7d706/lib/python2.7/site-packages/winguapi/client.py", line 146, in request
    raise APIException(path, response.text, response.status_code)
+APIException: messages/add_reminder 500: {
+ "status_code": -1,
+ "status_msg": "Unknown error"
+}

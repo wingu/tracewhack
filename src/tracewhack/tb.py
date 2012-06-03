@@ -5,7 +5,7 @@ Extract tracebacks.
 import re
 
 TRACEBACK_RE = re.compile(
-    ".*(Traceback \(most recent call last\):[ ]*\n([ ]+[^\n]*\n)*)",
+    ".*(Traceback \(most recent call last\):[ ]*\n([ ]+[^\n]*\n)*[^ ]+[^\n]*[\n]?([^\n]+[\n]?)*)",
     re.DOTALL | re.MULTILINE)
 
 
