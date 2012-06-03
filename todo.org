@@ -1,3 +1,2 @@
 * better logging?
 * more tests for bugdb
-* readme.txt
