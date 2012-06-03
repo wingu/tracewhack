@@ -4,13 +4,15 @@ Extract tracebacks.
 
 import re
 
-TRACEBACK_RE = re.compile(
+PY_TRACEBACK_RE = re.compile(
     """.*(Traceback[ ]\(most[ ]recent[ ]call[ ]last\):[ ]*[\n] # traceback line
        ([ ]+[^\n]*[\n])+ # at least one File/code line, start with spaces
        ([^ ]+[^\n]*[\n])? # first error line, if there is one
        ([^\n]+[\n]?)*) # any remaining error lines, to a blank line or eos
     """,
     re.DOTALL | re.MULTILINE | re.VERBOSE)
+
+ALL_RES = [PY_TRACEBACK_RE]
 
 
 def extract_tracebacks(txt):
@@ -36,11 +38,11 @@ def extract_traceback(chunk):
 
     Chunk should have only \n's as line separators, not \r or \r\n.
     """
-    matched = TRACEBACK_RE.match(chunk)
-    if matched:
-        return matched.group(1)
-    else:
-        return None
+    for matcher in ALL_RES:
+        matched = matcher.match(chunk)
+        if matched:
+            return matched.group(1)
+    return None
 
 
 def _normalize_linebreaks(txt):
